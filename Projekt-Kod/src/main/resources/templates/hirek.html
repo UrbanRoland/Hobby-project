@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link  rel="stylesheet" th:href="@{css/forma.css}" href="../static/css/forma.css">
+
+ 
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+</head>
+<body>
+    <form  th:action="@{/menet}" th:object="${menetjegyek}" method="post">
+			<label>Honnan</label>
+        <input type="text" class="form-control" th:field="*{honnan}" required><br>
+		<label>Hova</label>
+			<input type="text" class="form-control" th:field="*{hova}" required><br>
+			<label>Indulas</label>
+			<input type="text" class="form-control" th:field="*{indulas}" required><br>
+		<label>Erkezes</label>
+			<input type="text" class="form-control" th:field="*{varhatoErkezes}" required><br>
+			<label>Vonattipus</label>
+			<input type="text" class="form-control" th:field="*{vonnatTipus}" required><br>
+        <button type="submit"  tabindex="3" class="btn  btn-block" >Kuld </button>
+        </form>
+
+
+</body>
+</html>

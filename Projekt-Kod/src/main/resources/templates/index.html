@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width = device-width, initial-scale = 1">
+	<title>Vasút projekt</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />	
+	<link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css' />
+   <link rel="stylesheet" th:href="@{css/bejelentkezesutanCSS.css}" href="../static/css/bejelentkezesutanCSS.css"/>
+</head>
+<body>
+
+<div class="container">
+	<div class="fejlec">
+		<div class="row">
+		  <div class="col-lg-12">
+			  <div class="col-lg-1">
+				<a href="#nyelv" data-toggle="collapse"><img src="images/magyar.png"
+				id="magyar" class="img-responsive"
+				alt="Nyelv kiválasztása"></a>
+				<div id="nyelv" class="collapse">
+					<a href="#" class="btn" role="button" style="margin-top:1em;">
+						<img src="images/USA.png" id="USA" class="img-responsive" alt="Váltás angol nyelvre">
+					</a>
+					<a href="#" class="btn" role="button" style="margin-top:1em;">
+						<img src="images/nemet.png" id="nemet" class="img-responsive" alt="Váltás német nyelvre">
+					</a>
+				</div>
+			  </div>
+			  <div class="col-lg-3 logo"><img style="max-height:15em" src="images/vonatlogo.png" class="img-responsive" alt="Logó"></div>
+			  <div class="page-header col-lg-4">
+				  <h1><i><b>Vasút Projekt</b></i></h1>
+			  </div>
+				   <div class="col-lg-3" id="userButton">					    
+			  </div>
+			  <div class="col-lg-1">
+				  <a href="#" class="btn" role="button" style="background-color:black; margin-top:1em;">
+					<img src="images/akadalymentes.png" id="akadalymentes"
+					class="img-responsive pull-right" alt="Akadálymentesítés">
+				  </a>
+			  </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-lg-3 menetrend">
+	<h2>Menetrend kereső</h2>
+	<input type="text" class="form-control" placeholder="Honnan"><br>
+	<input type="text" class="form-control" placeholder="Hova"><br>
+	<input type="datetime-local" class="form-control" placeholder="Mikor"><br>
+	<p><a href="#" class="btn btn-primary" role="button">Keresés</a></p>
+  </div>
+  <div class="col-lg-6">
+	<div class="jumbotron">
+		<h2>Hírek</h2>
+		<div class="datum">2019. október 25. péntek, 17.28</div>
+		<h3 class="hirek"><a href="#">Szombat hajnalban akadozhat a bankkártyás jegyvásárlás</a></h3>
+		<div class="datum">2019. október 25. péntek, 14.27</div>
+		<h3 class="hirek"><a href="#">Az újszászi vonalon éjszaka helyreállhat a menetrend</a></h3>
+		<div class="datum">2019. október 24. csütörtök, 13.14</div>
+		<h3 class="hirek"><a href="#">Sülysápnál megjavították a biztosítóberendezés kábelét</a></h3>
+		<div class="datum">2019. október 24. csütörtök, 06.24</div>
+		<h3 class="hirek"><a href="#">Hétvégi óraigazítás a vasútnál</a></h3>
+		<div class="datum">2019. október 19. szombat, 09.26</div>
+		<h3 class="hirek"><a href="#">Hétvégére módosul a menetrend a szobi vonalon</a></h3>
+		<div class="datum">2019. október 13. vasárnap, 19.03</div>
+		<h3 class="hirek"><a href="#">Korlátozások a Nyugati pályaudvar pénztárcsarnokában</a></h3>
+	</div>
+	</div>
+  <div class="col-lg-3 kereso">
+	  <h2>Keresés</h2>
+	<input type="text" class="form-control"><br>
+	<a href="#" class="btn btn-primary" role="button">Keresés</a><br><br>
+	<h3><a data-toggle="collapse">Regisztráció</a></h3>
+        <div id="regisztracio" class="collapse">
+		</div>
+  </div>
+</div>
+</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script></body>
+</html>
