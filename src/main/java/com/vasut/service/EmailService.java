@@ -44,7 +44,7 @@ public class EmailService {
 			// Ez az uzenet targya
 			uzenet.setSubject("Sikeres Regisztrálás");
 			// Maga az uzenet
-			uzenet.setText("Kedves " + email + "! \n \n Köszönjük, hogy regisztráltál az oldalunkra!" + "kód "+ key+ activationLink  );
+			uzenet.setText("Kedves " + email + "! \n \n Köszönjük, hogy regisztráltál az oldalunkra!" + "\n "+ "A fiókod aktiválására kattints az alábbi linkre: " +activationLink+key  );
 			javaMailSender.send(uzenet);
 		} catch (Exception e) {
 			log.info("Hiba az email küldésekor az alábbi címre: " + email + " " + e);

@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		String toReturn = new String(word);
 		//log.debug("random code: " + toReturn);
-		System.out.println("Aktivációs kód: " + toReturn);
+		//System.out.println("Aktivációs kód: " + toReturn);
 		return new String(word);
     }
 
