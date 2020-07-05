@@ -45,6 +45,7 @@ public class ErrorPageController implements ErrorController {
 		if (errCode.equals("500")) {
 			return "errors/500";
 		}
+		
 		return "detaildError";
 	}
 

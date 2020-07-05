@@ -1,9 +1,10 @@
-insert into users(idd,email,full_name,password) values(1,'test@test.com','test','test')   ;
-insert into users(idd,email,full_name,password) values(2,'123@gmaiil.com','Kiskutya','123')   ;
-insert into roles(role) values ('user')                                        ;
-insert into roles(role) values ('admin')                                       ;
-insert into users_roles(user_id, role_id) values (1,1);
-insert into users_roles(user_id, role_id) values (2,2);
+insert into users(email,full_name,password,enabled) values('test@test.com','test','test','t')   ;
+
+insert into roles(role) values ('user');
+insert into roles(role) values ('admin');
+
+
+
 
 
 

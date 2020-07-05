@@ -4,60 +4,55 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--================================================================================================================================================================================================================-->
-<link rel="stylesheet" th:href="@{css/forma.css}">
+
 <!--================================================================================================================================================================================================================-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
  <!--================================================================================================================================================================================================================-->
 
-<title>Bejelentkezés</title>
 
-<style>
-.btn {
-	background-color: #560000;
-	border-color: white;
-	color: white;
+<title>Sikeres regisztrálás</title>
+<style type="text/css">
+html, body {
+    height: 100%;
+    background-color: #838181;
 }
 
-.btn:hover {
-	background-color: #b09696;
+/* CSS only for examples not required for centering */
+.container {
+    height: 100%;
 }
 
-.btn:active:focus {
-	background-color: #826565;
-}
 
-.btn:focus {
-	background-color: #826565;
-}
 
-#f {
-	position: relative;
-	bottom: -25px;
-}
 </style>
 </head>
+<body>
 
-<body class="session-authentication pt-7 pb-5">
-	<div class="auth-form" id="f">
-		<h1 style="color: #262626; font-size: 30px" align="center">Bejelentkezés</h1>
-
-		<div id="bejelentkezes" class="auth-form-body mt-4">
-
-			<form name="login" th:action="@{/login}" method="post" class="form-signin">
-				<div id="err" th:if="${param.error}" class="alert alert-danger">Hibás felhasználói név és jelszó</div>
-				<div th:if="${param.logout}" class="alert alert-success">Sikeresen kijelentkeztél</div>
-				<label for="username">Email-cím</label> 
-					<input type="email" id="username" name="username" class="form-control" placeholder="Email-cím" required="true" /> </br> 
-				<label for="password">Jelszó</label>
-					<input type="password" id="password" name="password" class="form-control" placeholder="Jelszó" required="true" /> </br>
-				<button tabindex="3" class="btn  btn-block" role="button" type="submit">Bejelentkezés</button>
-			</form>
-		</div>
-		<p class="create-account-callout mt-3">
-			<a href="/registration">Regisztráció</a><br>
-		</p>
-	</div>
+<div class="container">
+  
+   
+    <div class="row h-100">
+        <div class="col-sm-12 my-auto">
+            <div class=" w-25 mx-auto">
+         
+         <div class="card text-white bg-success mb-4" style="width: 20rem;">
+  <div class="card-header"><h5 class="card-title"> Siker!</h5></div>
+  <div class="card-body">
+   
+    <p class="card-text">Az adatai elmentésre kerültek. A regsztrációkor megadott email címre kiküldtünk egy aktivációs linket. Mielőtt bejelentkezne aktiválnia kell felhasználói fiókját.   </p>
+  </div>
+  <div class="card-footer bg-transparent">
+  <form action="/login">
+    <button type="submit" class="btn btn-success">Megértettem</button>
+</form>
+  
+  </div>
+</div>
+         
+        </div>
+    </div>
+</div>
+</div>
 
 
 </body>

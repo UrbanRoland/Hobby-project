@@ -54,8 +54,8 @@ tr:nth-child(even) {
 						</div>
 					</div>
 					<div class="col-lg-3 logo">
-						<img style="max-height: 15em" src="images/vonatlogo.png"
-							class="img-responsive" alt="Logó">
+					        <a href="/main"><img style="max-height:15em" src="images/vonatlogo.png" class="img-responsive" alt="Logó">
+							</a>
 					</div>
 					<div class="page-header col-lg-4">
 						<h1>
@@ -70,7 +70,7 @@ tr:nth-child(even) {
 						<form sec:authorize="isAuthenticated()" id="frmlogout"
 							th:action="@{/logout}" method="post" class="form-inline">
 							<div id="user" class="collapse">
-								<a href="/bejelentkezesUtan" class="btn btn-primary col-lg-12"
+								<a href="/main" class="btn btn-primary col-lg-12"
 									role="button">Vissza a Főoldalra</a> <a href="/jegyeim"
 									class="btn btn-primary col-lg-12" role="button">Jegyeim</a> <a
 									href="/profil" class="btn btn-primary col-lg-12" role="button">Profil</a>

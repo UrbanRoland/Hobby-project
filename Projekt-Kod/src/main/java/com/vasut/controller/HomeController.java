@@ -1,14 +1,18 @@
 package com.vasut.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +24,8 @@ import com.vasut.repository.NewsRepository;
 import com.vasut.service.EmailService;
 import com.vasut.service.TicketsService;
 import com.vasut.service.UserService;
+import com.vasut.service.UserServiceImpl;
+import com.vasut.validators.InputValidator;
 
 @Controller
 public class HomeController {
@@ -29,7 +35,9 @@ public class HomeController {
 	private UserService userService;
 	private NewsRepository newsRepo;
 	private TicketsService ticketsService;
-
+	private	UserServiceImpl userServiceImpl;
+	
+	
 	@Autowired
 	public void setTicketsService(TicketsService ticketsService) {
 		this.ticketsService = ticketsService;
@@ -45,11 +53,9 @@ public class HomeController {
 		this.userService = userService;
 	}
 
-	@Autowired
-	public void setEmailService(EmailService emailService) {
-		this.emailService = emailService;
-	}
-
+	
+	
+	
 	@RequestMapping("/index")
 	public String stories() {
 		return "index";
@@ -72,18 +78,18 @@ public class HomeController {
 	}
 
 	
-	@RequestMapping("bejelentkezesUtan")
+	@RequestMapping("main")
 	public String bejelentkezve(Model model) {
 		// jelenjenek meg hirrek
 		model.addAttribute("news", newsRepo.findFirst5ByOrderByDateDesc());
-		return "bejelentkezesUtan";
+		return "main";
 	}
 
 	// Ez tartozik a hírek kereséséhez
 	@RequestMapping("search")
 	public String atiranyit(@ModelAttribute("keyword") String keyword, Model model) {
 		model.addAttribute("news", newsRepo.search(keyword));
-		return "bejelentkezesUtan";
+		return "main";
 	}
 
 	@RequestMapping("/hirek")
@@ -95,13 +101,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/menet", method = RequestMethod.POST)
 	public String cimvisszaadasa(@ModelAttribute News news) {
-		return "bejelentkezesUtan";
+		return "main";
 	}
 
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("news", newsRepo.findFirst5ByOrderByDateDesc());
-		return "bejelentkezesUtan";
+		return "main";
 	}
 
 	@RequestMapping("/registration")
@@ -112,10 +118,26 @@ public class HomeController {
 
 
 	@PostMapping("/reg")
-	public String saveUser(@ModelAttribute User user) {
-		emailService.uzenetKuldese(user.getEmail());
+	public String saveUser(@ModelAttribute("user")  @Validated User user, BindingResult bindingResult) {
+		
+		
+		InputValidator inputValidator= new InputValidator();
+	
+		 //check if email exists
+		 for(int i=0;i<userService.allEmail().size();i++) {
+	        	if(user.getEmail().equals(userService.allEmail().get(i))) {
+	        		bindingResult.rejectValue("email", "valid.email","Ez az email cím már foglalt!");
+	        	}
+	        }		
+		 
+		inputValidator.validate(user, bindingResult);
+		if(bindingResult.hasErrors()) {
+			return "registration";
+		}
+		
 		userService.registerUser(user);
-		return "auth/login";
+		
+		return "regSuccess";
 	}
 
 	@RequestMapping("/jegyeim")
@@ -145,5 +167,21 @@ public class HomeController {
 	public String menetrendVendegeknek(Model model) {
 		return "menetrendVendegnek";
 	}
+	@RequestMapping("/regSuccess")
+	public String regSuccess(Model model) {
+		return "regSuccess";
+	}
+	@RequestMapping("/activationSuccess")
+	public String activationSuccess(Model model) {
+		return "activationSuccess";
+	}
+	
+	@RequestMapping(path = "/activation/{code}", method = RequestMethod.GET)
+    public String activation(@PathVariable("code") String code, HttpServletResponse response) {
+	userService.userActivation(code);
+	return "activationSuccess";
+ }
+	
 
+	
 }

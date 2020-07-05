@@ -16,6 +16,9 @@ public class EmailService {
 	@Value("${spring.mail.username}")
 	private String UZENET_FELADO;
 
+	@Value("${activation.link}")
+	private String activationLink;
+	
 	private JavaMailSender javaMailSender;
 
 	// Azt us lehetne, hogy a javaMailSender fole irom az anotaciot de ez
@@ -27,7 +30,7 @@ public class EmailService {
 
 	// Annak az email cimet varja parameterul aki beregisztrált tehat ez lesz a
 	// cimzett
-	public void uzenetKuldese(String email) {
+	public void uzenetKuldese(String email, String key) {
 		// Ez lesz az az objektum amit tartalommal toltunk fel
 		SimpleMailMessage uzenet = null;
 
@@ -41,7 +44,7 @@ public class EmailService {
 			// Ez az uzenet targya
 			uzenet.setSubject("Sikeres Regisztrálás");
 			// Maga az uzenet
-			uzenet.setText("Kedves " + email + "! \n \n Köszönjük, hogy regisztráltál az oldalunkra!");
+			uzenet.setText("Kedves " + email + "! \n \n Köszönjük, hogy regisztráltál az oldalunkra!" + "kód "+ key+ activationLink  );
 			javaMailSender.send(uzenet);
 		} catch (Exception e) {
 			log.info("Hiba az email küldésekor az alábbi címre: " + email + " " + e);

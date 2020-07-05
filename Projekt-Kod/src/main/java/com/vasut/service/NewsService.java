@@ -19,16 +19,7 @@ public class NewsService {
 		this.newsRepo = newsRepo;
 	}
 
-	/**
-	 * @author Roland
-	 *         <p>
-	 *         Ezen metodus segitsegevel el tudunk menteni egy hirt.
-	 * 
-	 * @param title   a hir cime
-	 * @param date    a hir datuma
-	 * @param content a hir tartalma
-	 * 
-	 */
+
 	public void init(String title, String content, Date date) {
 		News news = new News(title, content, date);
 		newsRepo.save(news);

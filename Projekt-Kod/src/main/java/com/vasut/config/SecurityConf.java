@@ -1,6 +1,7 @@
 package com.vasut.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -11,7 +12,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class SecurityConf extends WebSecurityConfigurerAdapter {
 	
-
+	@Bean
+	public UserDetailsService userDetailsService() {
+	    return super.userDetailsService();
+	}
 		
 	@Autowired
 	private UserDetailsService userService;
@@ -31,16 +35,18 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 				.regexMatchers(".*\\.css$").permitAll()
 				.antMatchers("/registration").permitAll()
 				.antMatchers("/images/**").permitAll()
-			
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/test/**").hasAnyAuthority("admin")
 				.antMatchers("/reg").permitAll()
+				.antMatchers("/db/**").permitAll()
+				.antMatchers("/activation/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 		
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
-				.defaultSuccessUrl("/bejelentkezesUtan")
+				.defaultSuccessUrl("/main")
 				.and()
 			.logout()
 				.logoutSuccessUrl("/login?logout")
@@ -50,6 +56,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 		http.headers().frameOptions().disable();
 		
 	}	
+	
 	
 }
 	

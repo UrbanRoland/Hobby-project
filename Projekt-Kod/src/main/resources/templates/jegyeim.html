@@ -28,7 +28,8 @@
 						</a>
 					</div>
 				</div>
-                <div class="col-lg-3 logo"><img style="max-height:15em" src="images/vonatlogo.png" class="img-responsive" alt="Logó"></div>
+                <div class="col-lg-3 logo">
+                <a href="/main"><img style="max-height:15em" src="images/vonatlogo.png" class="img-responsive" alt="Logó"></a></div>
                 <div class="page-header col-lg-4">
                     <h1><i><b>Vasút Projekt</b></i></h1>
                 </div>
@@ -37,7 +38,7 @@
 				  
 			           <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
                     <div id="user" class="collapse">
-                      		 <a href="/bejelentkezesUtan" class="btn btn-primary col-lg-12" role="button">Vissza a Főoldalra</a>
+                      		 <a href="/main" class="btn btn-primary col-lg-12" role="button">Vissza a Főoldalra</a>
                         		<a href="/profil" class="btn btn-primary col-lg-12" role="button">Profil</a>
                            			<a href="/jegyvasarlas" class="btn btn-primary col-lg-12" role="button">Jegyvásárlás</a>
                          				<a class="btn btn-primary col-lg-12" href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Kijelentkezés</a>
